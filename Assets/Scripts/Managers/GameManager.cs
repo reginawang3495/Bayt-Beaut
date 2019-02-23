@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         try
         {
-            utilities.gm = this;
+            utilities.gm = this; utilities.startup();
             playLoad = new PlayerLoader(this);
             htcLoad = new HTCViveLoader(this, playLoad);
             playLoad.setHTCLoader(htcLoad);

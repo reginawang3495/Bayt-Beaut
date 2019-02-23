@@ -4,16 +4,53 @@ using UnityEngine;
 using System.Net;
 using System.IO;
 using System;
+using System.Web;
 
 using System.Net.Http;
 
 public class utilities
 {
+    static string access_token;
+    static string path = "C:/Users/Regina Wang/Config.txt";
     public static GameManager gm;
-    static void Main(string[] args)
+
+    public static void startup()
     {
-        requestText("");
+        access_token = System.IO.File.ReadAllLines(@path)[10];
     }
+
+    public static void refreshTokens()
+    {
+        try
+        {
+            string[] lines = System.IO.File.ReadAllLines(@path);
+            string input = "&grant_type=refresh_token&client_id=" + lines[1] + "&refresh_token=" + lines[4] + "&client_secret=" + lines[7]; ;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://www.googleapis.com/oauth2/v4/token"));
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            using (StreamWriter stOut = new StreamWriter(request.GetRequestStream(), System.Text.Encoding.ASCII))
+                stOut.Write(input);
+
+            HttpWebResponse hwr = (HttpWebResponse)request.GetResponse();
+            using (StreamReader stRead = new StreamReader(hwr.GetResponseStream()))
+            {
+                string result = stRead.ReadToEnd();
+                access_token = result.Substring(21, result.Substring(21).IndexOf('"'));
+                lines[10] = access_token;
+                System.IO.File.WriteAllLines(@path, lines);
+
+            }
+        }
+        catch (WebException e)
+        {
+            if (e.Response != null)
+                using (StreamReader sr = new StreamReader((e.Response as HttpWebResponse).GetResponseStream()))
+                    Debug.Log(sr.ReadToEnd());
+        }
+    }
+
     public static void requestText(string file)
     {
         try {
@@ -21,7 +58,7 @@ public class utilities
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 
             request.Method = "POST";
-            request.Headers["Authorization"] = "Bearer ya29.GluyBj6-OhrScFGDa9QyIxeGSEZl_Xzcpst6QtKkvRGbtnAX-CF7oVDsxsqFaZszHUTOfYPrtkPzaGXF1tk6F2_FWDQVT4pjQcg85lo1MFbvtJ00GcOSAwNeqBTy";
+            request.Headers["Authorization"] = "Bearer " + access_token;
             request.ContentType = "application/json";
 
         using (StreamWriter sw = new StreamWriter(request.GetRequestStream()))
@@ -60,15 +97,10 @@ public class utilities
         }
         catch (WebException e)
         {
-            if(e.Response != null)
-            using (StreamReader sr = new StreamReader((e.Response as HttpWebResponse).GetResponseStream()))
-            {
-                string result = sr.ReadToEnd();
-                Debug.Log(result);
-
-            }
-
-            Debug.Log(e.StackTrace);
+            if (e.Response != null)
+                using (StreamReader sr = new StreamReader((e.Response as HttpWebResponse).GetResponseStream()))
+                    Debug.Log(sr.ReadToEnd());
+            refreshTokens();
         }
     }
 

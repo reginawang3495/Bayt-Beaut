@@ -39,13 +39,13 @@ public class HTCViveLoader  {
             float[] samples = new float[a.samples * a.channels];
             a.GetData(samples, 0);
 
-            using (FileStream file = File.Create("C:/Users/Hajar ARA/Desktop/wwww"))
+            using (FileStream file = File.Create("C:/Users/Regina Wang/Desktop/wwww"))
             {
                         ConvertAndWrite(file, a);
                         WriteHeader(file, a);
             }
 
-            utilities.requestText("C:/Users/Hajar ARA/Desktop/wwww");
+            utilities.requestText("C:/Users/Regina Wang/Desktop/wwww");
         }
     }
 

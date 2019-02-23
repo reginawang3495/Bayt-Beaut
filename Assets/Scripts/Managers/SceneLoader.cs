@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.Threading;
+
 
 
 
@@ -26,6 +28,7 @@ public class SceneLoader : MonoBehaviour{
             SceneManager.LoadScene("Intro", LoadSceneMode.Additive);
             gm.currentScene = SceneManager.GetSceneByName("Intro");
             levelLoad.currentScene = SceneManager.GetSceneByName("Intro");
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Intro"));
             htcLoad.setCameraRig(GameObject.FindWithTag("[CameraRig]"));
             htcLoad.setSteamVR(GameObject.FindWithTag("[SteamVR]"));
         }
@@ -38,23 +41,23 @@ public class SceneLoader : MonoBehaviour{
 
     public void LoadStart()
     {
-        var asyncOp = SceneManager.LoadSceneAsync("saveme", LoadSceneMode.Additive);
-        SceneManager.MoveGameObjectToScene(GameObject.FindWithTag("[CameraRig]"), SceneManager.GetSceneByName("saveme"));
-        SceneManager.MoveGameObjectToScene(GameObject.FindWithTag("[SteamVR]"), SceneManager.GetSceneByName("saveme"));
-
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Managers"));
+        SceneManager.MoveGameObjectToScene(GameObject.FindWithTag("[CameraRig]"), SceneManager.GetSceneByName("Managers"));
+        SceneManager.MoveGameObjectToScene(GameObject.FindWithTag("[SteamVR]"), SceneManager.GetSceneByName("Managers"));
         Destroy(GameObject.FindWithTag("Scene1"));
+        SceneManager.UnloadScene("Intro");
 
-        var asynOp2 = SceneManager.UnloadSceneAsync("Intro");
+        SceneManager.LoadSceneAsync("saveme", LoadSceneMode.Additive);
+        SceneManager.GetSceneByName("saveme");
+        while(!SceneManager.GetSceneByName("saveme").isLoaded)
+        Thread.Sleep(1000);
 
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("saveme"));
 
     }
 
     public void setLevelLoader(LevelLoader levelLoad)
     {
         this.levelLoad = levelLoad;
-    }
-
-    public void LoadScene(string scene){
-
     }
 }
