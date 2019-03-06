@@ -48,11 +48,7 @@ public class SceneLoader : MonoBehaviour{
         SceneManager.UnloadScene("Intro");
 
         SceneManager.LoadSceneAsync("saveme", LoadSceneMode.Additive);
-        SceneManager.GetSceneByName("saveme");
-        while(!SceneManager.GetSceneByName("saveme").isLoaded)
-        Thread.Sleep(1000);
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("saveme"));
 
     }
 

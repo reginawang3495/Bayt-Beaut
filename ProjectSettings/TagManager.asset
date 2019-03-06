@@ -8,6 +8,7 @@ TagManager:
   - '[CameraRig]'
   - '[SteamVR]'
   - Scene1
+  - Bowl
   - MagicMirror
   layers:
   - Default

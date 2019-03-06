@@ -13,15 +13,16 @@ public class HTCViveController : MonoBehaviour
     {
         try
         {
-            Debug.Log("hope");
             load = GameObject.FindWithTag("GameManager").GetComponent<GameManager>().htcLoad;
             device = GetComponent<SteamVR_TrackedController>();
             device.Gripped += gripped;
             device.Ungripped += ungripped;
+            device.TriggerClicked += clicked;
+            Debug.Log("clicked");
+
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            Debug.Log(e.Message + " " + e.StackTrace);
         }
         }
 
@@ -34,4 +35,15 @@ public class HTCViveController : MonoBehaviour
     {
         load.ungripped();
     }
+
+    void clicked(object sender, ClickedEventArgs e)
+    {
+        Debug.Log("clicked");
+        if (transform.GetComponent<Collider>().bounds.Intersects(GameObject.FindWithTag("Bowl").GetComponent<Collider>().bounds))
+        {
+            Debug.Log("bowl");
+            GameObject.FindWithTag("Bowl").transform.parent = transform;
+        }
+    }
+
 }
