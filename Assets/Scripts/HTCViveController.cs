@@ -6,17 +6,17 @@ using System;
 
 public class HTCViveController : MonoBehaviour
 {
-    HTCViveLoader load;
+ //   HTCViveLoader load;
     SteamVR_TrackedController device;
     // Start is called before the first frame update
     void Start()
     {
         try
         {
-            load = GameObject.FindWithTag("GameManager").GetComponent<GameManager>().htcLoad;
+        //    load = GameObject.FindWithTag("GameManager").GetComponent<GameManager>().htcLoad;
             device = GetComponent<SteamVR_TrackedController>();
-            device.Gripped += gripped;
-            device.Ungripped += ungripped;
+        //    device.Gripped += gripped;
+        //    device.Ungripped += ungripped;
             device.TriggerClicked += clicked;
             Debug.Log("clicked");
 
@@ -26,19 +26,28 @@ public class HTCViveController : MonoBehaviour
         }
         }
 
-    void gripped(object sender, ClickedEventArgs e)
+    void Update()
     {
-        load.gripped();
+        while (transform.GetComponent<Collider>().bounds.Intersects(GameObject.FindWithTag("Bowl").GetComponent<Collider>().bounds))
+        {
+            Debug.Log("bowl");
+            GameObject.FindWithTag("Bowl").transform.parent = transform;
+        }
     }
 
-    void ungripped(object sender, ClickedEventArgs e)
-    {
-        load.ungripped();
-    }
+    //void gripped(object sender, ClickedEventArgs e)
+    //{
+    //    load.gripped();
+    //}
+
+    //void ungripped(object sender, ClickedEventArgs e)
+    //{
+    //    load.ungripped();
+    //}
 
     void clicked(object sender, ClickedEventArgs e)
     {
-        Debug.Log("clicked");
+        Debug.Log("kbleh");
         if (transform.GetComponent<Collider>().bounds.Intersects(GameObject.FindWithTag("Bowl").GetComponent<Collider>().bounds))
         {
             Debug.Log("bowl");
