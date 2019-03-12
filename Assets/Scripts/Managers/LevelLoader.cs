@@ -12,7 +12,9 @@ public abstract class LevelLoader {
         currentScene = scene;
     }
 
-    public abstract void phraseRecognized(string phrase);
+    public abstract void textOptions(string file);
+
+    public abstract void wordSaid(string phrase);
 
     public abstract void playScene();
 }

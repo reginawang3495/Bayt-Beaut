@@ -22,7 +22,6 @@ public class HTCViveLoader  {
 
     public void gripped()
     {
-        Debug.Log("Microphone used: " + Microphone.devices[0]);
         if(!Microphone.IsRecording(""))
                 audio1 = Microphone.Start(Microphone.devices[0], false, 6, 44100);
 
@@ -45,7 +44,7 @@ public class HTCViveLoader  {
                         utilities.WriteHeader(file, a);
             }
 
-            utilities.requestText("C:/Users/Regina Wang/Desktop/wwww");
+            levelLoad.textOptions("C:/Users/Regina Wang/Desktop/wwww");
         }
     }
 

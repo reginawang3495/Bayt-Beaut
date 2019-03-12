@@ -19,6 +19,17 @@ public class utilities
         access_token = System.IO.File.ReadAllLines(@path)[10];
     }
 
+    public static string toStr(string[] arr) {
+        string phrase = "[";
+        for (int i = 0; i < arr.Length; i++)
+            if (arr.Length - 1 != i)
+                phrase += " \"" + arr[i] + "\" ,";
+            else
+                phrase += " \"" + arr[i] + "\"";
+        phrase += "]";
+        return phrase;
+    }
+
     public static void refreshTokens()
     {
         try
@@ -51,7 +62,7 @@ public class utilities
         }
     }
 
-    public static void requestText(string file)
+    public static void requestText(string file, string [] phrases)
     {
         try {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://speech.googleapis.com/v1/speech:recognize"));
@@ -60,7 +71,6 @@ public class utilities
             request.Method = "POST";
             request.Headers["Authorization"] = "Bearer " + access_token;
             request.ContentType = "application/json";
-
         using (StreamWriter sw = new StreamWriter(request.GetRequestStream()))
         {
                 string text = Convert.ToBase64String(File.ReadAllBytes(file));
@@ -70,7 +80,7 @@ public class utilities
                     "   {" +
                     "       \"languageCode\" : \"en-US\"," +
                     "       \"speechContexts\" : [{" +
-                    "           \"phrases\" : [\"mirror on\" , \"mirror off\" , \"start\"]" +
+                    "           \"phrases\" : " + toStr(phrases) +
                     "       }]" +
                     "   }," +
                     "\"audio\":" +
@@ -85,14 +95,13 @@ public class utilities
             using (StreamReader sr = new StreamReader(hwr.GetResponseStream()))
             {
                 string result = sr.ReadToEnd().ToLower();
-                if (result.Contains("mirror on"))
-                    gm.wordSaid("mirror on");
-                else if (result.Contains("mirror off"))
-                    gm.wordSaid("mirror off");
-                else if (result.Contains("start"))
-                    gm.wordSaid("start");
                 Debug.Log(result);
-
+                for (int i = 0; i < phrases.Length; i++)
+                    if (result.Contains(phrases[i]))
+                    {
+                        gm.levelLoad.wordSaid(phrases[i]);
+                        break;
+                    }
             }
         }
         catch (WebException e)

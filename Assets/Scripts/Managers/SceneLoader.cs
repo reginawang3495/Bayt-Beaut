@@ -26,9 +26,7 @@ public class SceneLoader : MonoBehaviour{
             this.playLoad = playLoad;
             this.htcLoad = htcLoad;
             SceneManager.LoadScene("Intro", LoadSceneMode.Additive);
-            gm.currentScene = SceneManager.GetSceneByName("Intro");
-            levelLoad.currentScene = SceneManager.GetSceneByName("Intro");
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Intro"));
+            levelLoad.setScene(SceneManager.GetSceneByName("Intro"));
             htcLoad.setCameraRig(GameObject.FindWithTag("[CameraRig]"));
             htcLoad.setSteamVR(GameObject.FindWithTag("[SteamVR]"));
         }
@@ -39,17 +37,13 @@ public class SceneLoader : MonoBehaviour{
 
     }
 
-    public void LoadStart()
+    public void LoadStart(string toLoad, string toRemove)
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Managers"));
         SceneManager.MoveGameObjectToScene(GameObject.FindWithTag("[CameraRig]"), SceneManager.GetSceneByName("Managers"));
         SceneManager.MoveGameObjectToScene(GameObject.FindWithTag("[SteamVR]"), SceneManager.GetSceneByName("Managers"));
-        Destroy(GameObject.FindWithTag("Scene1"));
-        SceneManager.UnloadScene("Intro");
-
-        SceneManager.LoadSceneAsync("saveme", LoadSceneMode.Additive);
-
-
+        Destroy(GameObject.FindWithTag(toRemove));
+        SceneManager.UnloadScene(toRemove);
+        SceneManager.LoadSceneAsync(toLoad, LoadSceneMode.Additive);
     }
 
     public void setLevelLoader(LevelLoader levelLoad)

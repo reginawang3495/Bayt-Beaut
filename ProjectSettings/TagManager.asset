@@ -7,9 +7,11 @@ TagManager:
   - GameManager
   - '[CameraRig]'
   - '[SteamVR]'
-  - Scene1
   - Bowl
   - MagicMirror
+  - Intro
+  - R
+  - Rhand
   layers:
   - Default
   - TransparentFX

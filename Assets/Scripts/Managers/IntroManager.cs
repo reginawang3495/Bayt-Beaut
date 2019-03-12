@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class IntroManager : LevelLoader {
+
+public class IntroManager : LevelLoader
+{
 
     GameManager gm;
     PlayerLoader playLoad;
     HTCViveLoader htcLoad;
+    public Scene currentScene;
 
-    public IntroManager() { }
 
     public IntroManager(GameManager gm, PlayerLoader playLoad, HTCViveLoader htcLoad)
     {
-        new onRecognizePhrase(new string[3] { "Start", "Begin" , ""}, this);
         this.gm = gm;
         this.playLoad = playLoad;
         this.htcLoad = htcLoad;
@@ -21,11 +23,20 @@ public class IntroManager : LevelLoader {
         htcLoad.setLevelLoader(this);
     }
 
-    public override void phraseRecognized(string phrase)
+    public override void textOptions(string file)
     {
-        Debug.Log("start!");
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = new Vector3(0, 0.5f, 0);
+        string[] arr = { "mirror on", "mirror off", "start" };
+        utilities.requestText(file, arr);
+    }
+
+    public override void wordSaid(string word)
+    {
+        if (word.Equals("start"))
+            gm.sceneLoad.LoadStart("Level1","Intro");
+        else if (word.Equals("mirror on"))
+            GameObject.FindWithTag("MagicMirror").transform.position = new Vector3(-3.4f, 1, 2);
+        else if (word.Equals("mirror off"))
+            GameObject.FindWithTag("MagicMirror").transform.position = new Vector3(100, -100, 100);
     }
 
     public override void playScene()
