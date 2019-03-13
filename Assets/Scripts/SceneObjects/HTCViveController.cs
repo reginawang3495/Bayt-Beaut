@@ -8,6 +8,8 @@ public class HTCViveController : MonoBehaviour
 {
     HTCViveLoader load;
     SteamVR_TrackedController device;
+    bool holdingSomething = false;
+    GameObject hold;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +28,20 @@ public class HTCViveController : MonoBehaviour
 
     public void OnCollision(Collision col)
     {
+        Debug.Log(col.gameObject.name);
         if (col.gameObject.name == "Bowl")
         {
             if (device.triggerPressed && GameObject.FindWithTag("Bowl").transform.parent != transform)
             {
                 GameObject.FindWithTag("Bowl").transform.parent = transform;
                 GameObject.FindWithTag("Bowl").GetComponent<Rigidbody>().useGravity = false;
+               // GameObject.FindWithTag("Bowl").transform.position = new Vector3(0,0,0);
+                GameObject.FindWithTag("Bowl").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
             }
         }
     }
+
 
     void gripped(object sender, ClickedEventArgs e)
     {

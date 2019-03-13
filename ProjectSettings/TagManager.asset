@@ -11,7 +11,7 @@ TagManager:
   - MagicMirror
   - Intro
   - R
-  - Rhand
+  - L
   layers:
   - Default
   - TransparentFX

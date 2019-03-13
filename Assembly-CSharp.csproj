@@ -92,6 +92,7 @@
      <Compile Include="Assets\Scripts\Managers\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\Managers\utilities.cs" />
      <Compile Include="Assets\Scripts\SceneObjects\HTCViveController.cs" />
+     <Compile Include="Assets\Scripts\SceneObjects\LeftHand.cs" />
      <Compile Include="Assets\Scripts\SceneObjects\RightHand.cs" />
      <Compile Include="Assets\Scripts\SceneObjects\Scene1Mother.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
