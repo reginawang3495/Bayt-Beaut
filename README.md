@@ -1,5 +1,6 @@
 # Bayt-Beaut
 VR game in progress
+Created by: Hajar Azzam and Regina Wang
 
 ## About:
 The concept behind the game is explore the family dynamics in Arab families and the different types of “endearing” commentaries that are given by the older members of any family to the younger generation. The game will allow the player to be immersed into an Arab character, that they will get to create physically, then live the game through it without control over its intellectual and behavioural characteristics.
