@@ -6,3 +6,10 @@ The concept behind the game is explore the family dynamics in Arab families and 
 
 ## Tools needed:
 This game was created in Unity and requires at least Unity 2018.3.5 to run in Unity since this game has not been deployed to any other platform. Bayt Beaut also requires an HTC Vive and also currently requires a Google Oauth key for Cloud Speech API. 
+
+## Screenshots:
+The current living room:
+![Screenshot1](screenshot1.jpg)
+
+The player's avatar or skin, which can be seen with the mirror.
+![Screenshot2](screenshot2.jpg)
