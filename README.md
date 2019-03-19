@@ -1,5 +1,6 @@
 # Bayt-Beaut
-### Created by: Hajar Azzam and Regina Wang
+Created by: Hajar Azzam and Regina Wang
+
 VR game in progress
 
 ## About:
