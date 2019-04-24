@@ -57,8 +57,6 @@ public class LeftHand : Hand
         {
             if (clicks > 0)
                 return;
-            Debug.Log("hey!");
-            Debug.Log(inHand);
 
             inHand.GetComponent<Rigidbody>().isKinematic = false;
             inHand.transform.parent = handObjParent;

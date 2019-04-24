@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class IntroManager : LevelLoader
 {
 
-    GameManager gm;
-    PlayerLoader playLoad;
-    HTCViveLoader htcLoad;
-    public Scene currentScene;
+
+    public string hi()
+    {
+        return "hi";
+    }
 
 
-    public IntroManager(GameManager gm, PlayerLoader playLoad, HTCViveLoader htcLoad)
+    public void setStuff(GameManager gm, PlayerLoader playLoad, HTCViveLoader htcLoad)
     {
         this.gm = gm;
         this.playLoad = playLoad;

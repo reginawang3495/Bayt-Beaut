@@ -11,7 +11,7 @@ using System.Net.Http;
 public class utilities
 {
     static string access_token;
-    static string path = "C:/Users/Regina Wang/Config.txt";
+    static string path = "C:/Users/Games/Config.txt";
     public static GameManager gm;
 
     public static void startup()
@@ -159,7 +159,6 @@ public class utilities
         Byte[] subChunk1 = BitConverter.GetBytes(16);
         fileStream.Write(subChunk1, 0, 4);
 
-        UInt16 two = 2;
         UInt16 one = 1;
 
         Byte[] audioFormat = BitConverter.GetBytes(one);

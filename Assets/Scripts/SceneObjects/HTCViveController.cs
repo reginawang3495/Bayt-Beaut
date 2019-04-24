@@ -14,7 +14,8 @@ public class HTCViveController : MonoBehaviour
     {
         try
         {
-            //load = GameObject.FindWithTag("GameManager").GetComponent<GameManager>().htcLoad;
+            Debug.Log("hi");
+            load = GameObject.FindWithTag("GameManager").GetComponent<GameManager>().htcLoad;
             device = GetComponent<SteamVR_TrackedController>();
             device.Gripped += gripped;
             device.Ungripped += ungripped;

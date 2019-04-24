@@ -20,7 +20,7 @@ public class RightHand : Hand
 
         if (clicks > 0)
             clicks--;
-        if(mother == null)
+        if (mother == null)
         {
             try
             {
@@ -53,11 +53,10 @@ public class RightHand : Hand
 
     public override void clicked()
     {
-        try {
+        try
+        {
             if (clicks > 0)
                 return;
-            Debug.Log("hey!");
-            Debug.Log(inHand);
 
             inHand.GetComponent<Rigidbody>().isKinematic = false;
             inHand.transform.parent = handObjParent;
@@ -68,3 +67,4 @@ public class RightHand : Hand
         catch (Exception e) { Debug.Log(e.ToString()); }
     }
 }
+

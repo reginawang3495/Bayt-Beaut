@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using System.Reflection;
 public class HTCViveLoader  {
 
     GameManager gm;
@@ -37,14 +38,14 @@ public class HTCViveLoader  {
             
             float[] samples = new float[a.samples * a.channels];
             a.GetData(samples, 0);
-
-            using (FileStream file = File.Create("C:/Users/Regina Wang/Desktop/wwww"))
+            string path = Path.Combine (Directory.GetCurrentDirectory(), @"TempFiles\Recordings\BaytBeautRecording.mp3");
+            using (FileStream file = File.Create(path))
             {
                         utilities.ConvertAndWrite(file, a);
                         utilities.WriteHeader(file, a);
             }
 
-            levelLoad.textOptions("C:/Users/Regina Wang/Desktop/wwww");
+			levelLoad.textOptions(path);
         }
     }
 

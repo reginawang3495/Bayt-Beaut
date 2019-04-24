@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour {
 
     PlayerLoader playLoad;
     public HTCViveLoader htcLoad;
-    public SceneLoader sceneLoad;
     public LevelLoader levelLoad;
+    public SceneLoader sceneLoad;
 
 
 
@@ -21,9 +21,11 @@ public class GameManager : MonoBehaviour {
             playLoad = new PlayerLoader(this);
             htcLoad = new HTCViveLoader(this, playLoad);
             playLoad.setHTCLoader(htcLoad);
-            sceneLoad = new SceneLoader(this, playLoad, htcLoad);
-            levelLoad = new IntroManager(this, playLoad, htcLoad); // will set level to play and htc automatically
-         //   utilities.requestText("");
+            sceneLoad = gameObject.AddComponent<SceneLoader>();
+            sceneLoad.setStuff(this, playLoad, htcLoad);
+            levelLoad = gameObject.AddComponent<IntroManager>();
+            ((IntroManager)levelLoad).setStuff(this, playLoad, htcLoad); // will set level to play and htc automatically
+            sceneLoad.setLevelLoader(levelLoad);
         }
         catch (Exception e)
         {
