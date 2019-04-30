@@ -21,14 +21,15 @@ public class HTCViveLoader  {
         this.playLoad = playLoad;
     }
 
-    public void gripped()
+    public void startRecording(bool grip)
     {
+        if (!levelLoad.isIntro && grip)
+            return;
         if(!Microphone.IsRecording(""))
-                audio1 = Microphone.Start(Microphone.devices[0], false, 6, 44100);
-
+          audio1 = Microphone.Start(Microphone.devices[0], false, 6, 15); 
     }
 
-    public void ungripped()
+    public void stopRecording(bool grip)
     {
         if (Microphone.IsRecording(""))
         {
@@ -38,7 +39,7 @@ public class HTCViveLoader  {
             
             float[] samples = new float[a.samples * a.channels];
             a.GetData(samples, 0);
-            string path = Path.Combine (Directory.GetCurrentDirectory(), @"TempFiles\Recordings\BaytBeautRecording.mp3");
+            string path = Directory.GetCurrentDirectory() + "/TempFiles/Recordings/BaytBeautRecording.mp3";
             using (FileStream file = File.Create(path))
             {
                         utilities.ConvertAndWrite(file, a);

@@ -1,0 +1,11 @@
+client_id
+176601150524-isobrkpt4nmvkmj2j9trvvo5uquikegt.apps.googleusercontent.com
+
+refresh_token
+1/i0IoGDcsMx94FvgmYJX1Lx9SA_tZsLHTwU4kBCPd92E
+
+client_secret
+hJqY5svPUHvDZ1fYWUFU6HMu
+
+access_token
+ya29.Gl38Bug4Ltp0OPqDA0uvAtUe5dLa9bgrdyfND3enINYqOghDyFaicxwIwXAsWUH0dka7o_o3EVD95_l6pnhxuomCftYtJyPJn8rvzjTH8STrmAIwQVvDhZkwlWReJmg

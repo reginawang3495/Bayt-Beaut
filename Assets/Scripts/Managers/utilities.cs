@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Net;
-using System.IO;
 using System;
+using System.IO;
+using System.Reflection;
 using System.Web;
+using System.Net;
 
 using System.Net.Http;
 
 public class utilities
 {
     static string access_token;
-    static string path = "C:/Users/Games/Config.txt";
+    static string path = Directory.GetCurrentDirectory() + "/TempFiles/Config.txt";
     public static GameManager gm;
 
     public static void startup()
     {
+        Debug.Log(Directory.GetCurrentDirectory());
         access_token = System.IO.File.ReadAllLines(@path)[10];
     }
 

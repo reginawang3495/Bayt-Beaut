@@ -12,7 +12,10 @@ public class IntroManager : LevelLoader
     {
         return "hi";
     }
-
+     void Start()
+    {
+        isIntro = true;
+    }
 
     public void setStuff(GameManager gm, PlayerLoader playLoad, HTCViveLoader htcLoad)
     {
@@ -40,8 +43,9 @@ public class IntroManager : LevelLoader
             GameObject.FindWithTag("MagicMirror").transform.position = new Vector3(100, -100, 100);
     }
 
-    public override void playScene()
+    public override IEnumerator playScene()
     {
-
+        if (false)
+            yield return null;
     }
 }

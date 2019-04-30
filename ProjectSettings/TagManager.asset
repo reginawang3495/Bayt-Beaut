@@ -14,6 +14,9 @@ TagManager:
   - Scene1
   - Level1
   - ToPickUp
+  - MC
+  - SpeakerSource1
+  - SpeakerSource2
   layers:
   - Default
   - TransparentFX

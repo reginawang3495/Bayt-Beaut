@@ -8,18 +8,20 @@ public abstract class LevelLoader : MonoBehaviour {
 
     public class DialogElement
     {
-        public DialogElement(string phrase, string [] phrases, int [] next) {
+        public DialogElement(string phrase, string parent, string [] phrases, int [] next) {
             npcPhrase = phrase;
+            mom = parent.Equals("mom");
             playerPhrases = phrases;
             nextElement = next;
         }
         public string npcPhrase;
         public string[] playerPhrases;
+        public bool mom;
         public int[] nextElement;
     }
 
 
-
+    public bool isIntro;
     public Scene currentScene;
     public GameManager gm;
     public PlayerLoader playLoad;
@@ -33,6 +35,6 @@ public abstract class LevelLoader : MonoBehaviour {
 
     public abstract void wordSaid(string phrase);
 
-    public abstract void playScene();
+    public abstract IEnumerator playScene();
 
 }
