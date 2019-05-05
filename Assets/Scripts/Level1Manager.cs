@@ -102,7 +102,7 @@ public class Level1Manager : LevelLoader
             htcLoad.startRecording(false);
 
 
-            yield return waitSomeTime(15); //TODO: put utilities in courotine and wait a little longer
+            yield return waitSomeTime(5); //TODO: put utilities in courotine and wait a little longer
 
             htcLoad.stopRecording(false);
 
