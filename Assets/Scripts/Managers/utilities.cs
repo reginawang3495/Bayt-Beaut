@@ -64,9 +64,11 @@ public class utilities
         }
     }
 
-    public static void requestText(string file, string [] phrases)
+    public static void requestText(string [] phrases)
     {
         try {
+            string file = Directory.GetCurrentDirectory() + "/TempFiles/Recordings/BaytBeautRecording.mp3";
+
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://speech.googleapis.com/v1/speech:recognize"));
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 

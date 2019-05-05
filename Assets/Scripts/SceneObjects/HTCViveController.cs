@@ -44,12 +44,12 @@ public class HTCViveController : MonoBehaviour
 
     void gripped(object sender, ClickedEventArgs e)
     {
-        load.gripped();
+        load.startRecording(true);
     }
 
     void ungripped(object sender, ClickedEventArgs e)
     {
-        load.ungripped();
+        load.stopRecording(true);
     }
 
 }

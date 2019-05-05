@@ -27,10 +27,10 @@ public class IntroManager : LevelLoader
         htcLoad.setLevelLoader(this);
     }
 
-    public override void textOptions(string file)
+    public override void textOptions()
     {
         string[] arr = { "mirror on", "mirror off", "start" };
-        utilities.requestText(file, arr);
+        utilities.requestText(arr);
     }
 
     public override void wordSaid(string word)

@@ -31,7 +31,7 @@ public abstract class LevelLoader : MonoBehaviour {
         currentScene = scene;
     }
 
-    public abstract void textOptions(string file);
+    public abstract void textOptions();
 
     public abstract void wordSaid(string phrase);
 

@@ -26,11 +26,13 @@ public class HTCViveLoader  {
         if (!levelLoad.isIntro && grip)
             return;
         if(!Microphone.IsRecording(""))
-          audio1 = Microphone.Start(Microphone.devices[0], false, 6, 15); 
+          audio1 = Microphone.Start(Microphone.devices[0], false, 6, 44100); 
     }
 
     public void stopRecording(bool grip)
     {
+        if (!levelLoad.isIntro && grip)
+            return;
         if (Microphone.IsRecording(""))
         {
             Microphone.End(null);
@@ -46,7 +48,7 @@ public class HTCViveLoader  {
                         utilities.WriteHeader(file, a);
             }
 
-			levelLoad.textOptions(path);
+			levelLoad.textOptions();
         }
     }
 
