@@ -12,9 +12,9 @@ public class Level1Manager : LevelLoader
 
 
     DialogElement []dialog = { new DialogElement("Dialog/Level1,Dialog1", "mom", new string[] { "good", "bad" }, new int[] { 1, 2 }),
-        new DialogElement("Dialog/Level1,Dialog2", "mom", new string[] {}, new int[] {4}),
-        new DialogElement("Dialog/Level1,Dialog3", "mom", new string[] {}, new int[] {4}),
-           new DialogElement("yialog/Level1,Dialog4", "dad", new string [] { }, new int [] { })
+        new DialogElement("Dialog/Level1,Dialog2", "mom", new string[] {}, new int[] {3}),
+        new DialogElement("Dialog/Level1,Dialog3", "mom", new string[] {}, new int[] {3}),
+           new DialogElement("Dialog/Level1,Dialog4", "dad", new string [] { }, new int [] { })
     };
     AudioSource speaker1;
     AudioSource speaker2;
@@ -98,19 +98,15 @@ public class Level1Manager : LevelLoader
                 yield return new WaitWhile(() => speaker2.isPlaying);
             }
             Debug.Log("done");
-            textOptions();
-            htcLoad.startRecording(false);
-
-
-            yield return waitSomeTime(5); //TODO: put utilities in courotine and wait a little longer
-
-            htcLoad.stopRecording(false);
-
+    
 
             if (dialog[index].playerPhrases.Length == 0)
             {
+                Debug.Log(":(");
+
                 if (dialog[index].nextElement.Length == 0)
                     yield break; //TODO: move to next scene
+                Debug.Log(":)");
                 index = dialog[index].nextElement[0]; 
             }
             else
@@ -121,7 +117,7 @@ public class Level1Manager : LevelLoader
                 yield return waitSomeTime(5); //TODO: put utilities in courotine and wait a little longer
 
                 htcLoad.stopRecording(false);
-                yield return waitSomeTime(1);
+
 
             }
             Debug.Log("continueeee");
