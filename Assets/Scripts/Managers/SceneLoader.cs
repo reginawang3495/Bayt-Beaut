@@ -22,14 +22,16 @@ public class SceneLoader : MonoBehaviour{
             this.gm = gm;
             this.playLoad = playLoad;
             this.htcLoad = htcLoad;
-            SceneManager.LoadScene("Intro", LoadSceneMode.Additive);
-            htcLoad.setCameraRig(GameObject.FindWithTag("[CameraRig]"));
+          SceneManager.LoadScene("Intro", LoadSceneMode.Additive);
+
+        htcLoad.setCameraRig(GameObject.FindWithTag("[CameraRig]"));
             htcLoad.setSteamVR(GameObject.FindWithTag("[SteamVR]"));
 
+        gm.sceneLoad.LoadStart("Level1", "Intro");
 
     }
 
-        IEnumerator waitSomeTime(float x)
+    IEnumerator waitSomeTime(float x)
     {
         yield return new WaitForSeconds(x);
     }

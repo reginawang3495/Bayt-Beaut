@@ -7,7 +7,6 @@ TagManager:
   - GameManager
   - '[CameraRig]'
   - '[SteamVR]'
-  - MagicMirror
   - Intro
   - R
   - L
@@ -17,6 +16,13 @@ TagManager:
   - MC
   - SpeakerSource1
   - SpeakerSource2
+  - Left
+  - Right
+  - Center
+  - MagicMirror
+  - projectile
+  - FxTemporaire
+  - Eye
   layers:
   - Default
   - TransparentFX

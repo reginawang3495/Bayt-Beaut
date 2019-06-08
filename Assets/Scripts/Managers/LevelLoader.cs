@@ -19,8 +19,26 @@ public abstract class LevelLoader : MonoBehaviour {
         public bool mom;
         public int[] nextElement;
     }
+    void Update()
+    {
+        checkUp();
+    }
 
+    public void checkUp()
+    {
+        if (word.Length != 0)
+            if (count < 2)
+                count++;
+            else
+            {
+                wordSaid(word);
+                count = 0;
+                word = "";
+            }
+    }
 
+    public string word = "";
+    int count = 0;
     public bool isIntro;
     public Scene currentScene;
     public GameManager gm;
@@ -31,10 +49,11 @@ public abstract class LevelLoader : MonoBehaviour {
         currentScene = scene;
     }
 
-    public abstract void textOptions();
+    public abstract bool textOptions();
 
     public abstract void wordSaid(string phrase);
 
     public abstract IEnumerator playScene();
 
 }
+

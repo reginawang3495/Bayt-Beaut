@@ -14,6 +14,7 @@ public class utilities
     static string access_token;
     static string path = Directory.GetCurrentDirectory() + "/TempFiles/Config.txt";
     public static GameManager gm;
+    public static bool apiRequesting = false;
 
     public static void startup()
     {
@@ -31,6 +32,21 @@ public class utilities
         phrase += "]";
         return phrase;
     }
+
+    //static JustForCoroutines _coroutiner = null;
+    //static JustForCoroutines coroutiner
+    //{
+    //    get
+    //    {
+    //        if (_coroutiner == null)
+    //        {
+    //            _coroutiner = new GameObject("JUST FOR COROUTINES").AddComponent<JustForCoroutines>();
+    //        }
+    //        return _coroutiner;
+    //    }
+    //}
+
+
 
     public static void refreshTokens()
     {
@@ -64,9 +80,11 @@ public class utilities
         }
     }
 
+
     public static void requestText(string [] phrases)
     {
         try {
+            apiRequesting = true;
             string file = Directory.GetCurrentDirectory() + "/TempFiles/Recordings/BaytBeautRecording.mp3";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri("https://speech.googleapis.com/v1/speech:recognize"));
@@ -83,6 +101,7 @@ public class utilities
                     "\"config\":" +
                     "   {" +
                     "       \"languageCode\" : \"en-US\"," +
+                    "\"maxAlternatives\" : 30,"+
                     "       \"speechContexts\" : [{" +
                     "           \"phrases\" : " + toStr(phrases) +
                     "       }]" +
@@ -103,7 +122,8 @@ public class utilities
                 for (int i = 0; i < phrases.Length; i++)
                     if (result.Contains(phrases[i]))
                     {
-                        gm.levelLoad.wordSaid(phrases[i]);
+                        gm.levelLoad.word = (phrases[i]);
+                        apiRequesting = true;
                         break;
                     }
             }
@@ -114,13 +134,13 @@ public class utilities
                 using (StreamReader sr = new StreamReader((e.Response as HttpWebResponse).GetResponseStream()))
                     Debug.Log(sr.ReadToEnd());
             refreshTokens();
+            requestText(phrases);
         }
+
     }
 
-    public static void ConvertAndWrite(FileStream fileStream, AudioClip clip)
+    public static bool ConvertAndWrite(FileStream fileStream, float [] samples)
     {
-        var samples = new float[clip.samples];
-        clip.GetData(samples, 0);
         Int16[] intData = new Int16[samples.Length];
 
         //converting in 2 float[] steps to Int16[], //then Int16[] to Byte[]
@@ -139,14 +159,11 @@ public class utilities
         }
 
         fileStream.Write(bytesData, 0, bytesData.Length);
+        return true;
     }
 
-    public static void WriteHeader(FileStream fileStream, AudioClip clip)
+    public static bool WriteHeader(FileStream fileStream, int hz, int channels, int samples)
     {
-        var hz = clip.frequency;
-        var channels = clip.channels;
-        var samples = clip.samples;
-
         fileStream.Seek(0, SeekOrigin.Begin);
         Byte[] riff = System.Text.Encoding.UTF8.GetBytes("RIFF");
         fileStream.Write(riff, 0, 4);
@@ -190,6 +207,13 @@ public class utilities
         Byte[] subChunk2 = BitConverter.GetBytes(samples * channels * 2);
         fileStream.Write(subChunk2, 0, 4);
         //        fileStream.Close();
+        return true;
     }
+
+}
+
+
+public class JustForCoroutines : MonoBehaviour
+{
 
 }

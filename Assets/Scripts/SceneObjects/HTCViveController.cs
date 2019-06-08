@@ -49,7 +49,7 @@ public class HTCViveController : MonoBehaviour
 
     void ungripped(object sender, ClickedEventArgs e)
     {
-        load.stopRecording(true);
+        StartCoroutine(load.waitForRecord(true));
     }
 
 }

@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class IntroManager : LevelLoader
 {
-
-
+    bool thisScene = true;
+    
     public string hi()
     {
         return "hi";
@@ -15,6 +15,7 @@ public class IntroManager : LevelLoader
      void Start()
     {
         isIntro = true;
+        StartCoroutine(playScene());
     }
 
     public void setStuff(GameManager gm, PlayerLoader playLoad, HTCViveLoader htcLoad)
@@ -27,10 +28,11 @@ public class IntroManager : LevelLoader
         htcLoad.setLevelLoader(this);
     }
 
-    public override void textOptions()
+    public override bool textOptions()
     {
         string[] arr = { "mirror on", "mirror off", "start" };
         utilities.requestText(arr);
+        return true;
     }
 
     public override void wordSaid(string word)
@@ -45,7 +47,23 @@ public class IntroManager : LevelLoader
 
     public override IEnumerator playScene()
     {
-        if (false)
-            yield return null;
+        yield return new WaitWhile(() => htcLoad == null);
+        while (thisScene)
+        {
+            yield return new WaitWhile(() => (htcLoad.lookingAtSomething() == ""));
+            htcLoad.startRecording(false);
+            Debug.Log("start recording");
+            int i = 0;
+            for (; i < 10; i++)
+            {
+                yield return new WaitForSeconds(.5f); //TODO: put utilities in courotine and wait a little longer
+                if (htcLoad.lookingAtSomething() == "") // break gaze then  buble fade
+                    break;
+            }
+            Debug.Log("stop recording");
+
+            if(i > 1)
+                StartCoroutine(htcLoad.waitForRecord(false));
+        }
     }
 }
