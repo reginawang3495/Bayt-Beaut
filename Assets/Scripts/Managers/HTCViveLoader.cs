@@ -131,7 +131,7 @@ public class HTCViveLoader
         HTCVive = camera;
     }
 
-    public String lookingAtSomething()
+    public bool lookingAtSomething()
     {
         if (eye != null)
         {
@@ -141,10 +141,10 @@ public class HTCViveLoader
             if (Physics.Raycast(eye.transform.position, fwd, out hit, 10))
             {
                 Debug.Log(hit.collider.ToString());
-                return hit.collider.ToString();
+                return true;
             }
         }
-        return "";
+        return false;
     }
 
 

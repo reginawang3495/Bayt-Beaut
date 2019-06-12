@@ -50,14 +50,14 @@ public class IntroManager : LevelLoader
         yield return new WaitWhile(() => htcLoad == null);
         while (thisScene)
         {
-            yield return new WaitWhile(() => (htcLoad.lookingAtSomething() == ""));
+            yield return new WaitWhile(() => (!htcLoad.lookingAtSomething()));
             htcLoad.startRecording(false);
             Debug.Log("start recording");
             int i = 0;
             for (; i < 10; i++)
             {
                 yield return new WaitForSeconds(.5f); //TODO: put utilities in courotine and wait a little longer
-                if (htcLoad.lookingAtSomething() == "") // break gaze then  buble fade
+                if (!htcLoad.lookingAtSomething()) // break gaze then  buble fade
                     break;
             }
             Debug.Log("stop recording");

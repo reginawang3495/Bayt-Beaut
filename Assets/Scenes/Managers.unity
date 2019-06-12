@@ -136,13 +136,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223253581}
-  m_LocalRotation: {x: 0.0010353775, y: -0.044723246, z: 0.0055373097, w: 0.99898356}
-  m_LocalPosition: {x: 0.226, y: -0.002, z: 0.255}
-  m_LocalScale: {x: 0.021103453, y: 0.02110345, z: 0.02110346}
+  m_LocalRotation: {x: 0.0012014321, y: -0.08431285, z: 0.0056371763, w: 0.9964227}
+  m_LocalPosition: {x: -0.0389, y: 0.0059, z: 0.2881}
+  m_LocalScale: {x: 0.042301893, y: 0.042301856, z: 0.042301904}
   m_Children: []
   m_Father: {fileID: 764146544}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 14.2300005, y: 1.7810001, z: 7.2110004}
+  m_LocalEulerAnglesHint: {x: 0.192, y: -9.672001, z: 0.632}
 --- !u!212 &223253583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -179,19 +179,19 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 35.69, y: 18.769999}
+  m_Size: {x: 7.8, y: 5.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!43 &318871475
+--- !u!43 &246831867
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -703,7 +703,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: -0.013061718, z: 0}
+    m_Center: {x: 0, y: -0.013061717, z: -0.000000007450581}
     m_Extent: {x: 0.010000002, y: 0.013061711, z: 0.010000005}
   m_DirtyAABB: 0
 --- !u!183 &382459080
@@ -3363,40 +3363,6 @@ CapsuleCollider:
   m_Height: 0.6708318
   m_Direction: 1
   m_Center: {x: 0.022791639, y: -0.18909906, z: -0.0000000040862296}
---- !u!21 &496457282
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &644622403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,7 +3623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764409138}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.7, y: -0.79, z: -0.93}
+  m_LocalPosition: {x: -2.02, y: -0.79, z: 0.907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 764069944}
@@ -4023,7 +3989,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 496457282}
+  - {fileID: 891363474}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4050,7 +4016,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764409138}
-  m_Mesh: {fileID: 318871475}
+  m_Mesh: {fileID: 246831867}
 --- !u!81 &770756770
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4059,6 +4025,40 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764160352}
   m_Enabled: 1
+--- !u!21 &891363474
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &925730714
 GameObject:
   m_ObjectHideFlags: 0
@@ -4372,8 +4372,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.00053400546, y: -0.028501745, z: 0.00040990114}
-    m_Extent: {x: 0.043807983, y: 0.028501738, z: 0.04380798}
+    m_Center: {x: 0.00053400174, y: -0.028501743, z: 0.0004098937}
+    m_Extent: {x: 0.043807976, y: 0.028501738, z: 0.043807987}
   m_DirtyAABB: 0
 --- !u!183 &1166694243
 Cloth:
